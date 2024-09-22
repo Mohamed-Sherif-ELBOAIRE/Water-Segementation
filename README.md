@@ -1,4 +1,3 @@
-![Alt text](https://www.mdpi.com/2073-4441/12/6/1825)
 # Water Segmentation Project
 
 This project involves the segmentation of water bodies from multispectral satellite imagery using deep learning techniques. The models are implemented using different architectures and versions, leveraging both TensorFlow/Keras and PyTorch. The goal is to accurately identify and segment water bodies from satellite images with multiple spectral channels.
