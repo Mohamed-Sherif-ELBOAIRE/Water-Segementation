@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Segmentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 5px;
+        }
+        h3 {
+            color: blue;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #ddd;
+        }
+        #file-upload {
+            display: none;
+        }
+        .output {
+            margin-top: 0px;
+            display: center;
+            justify-content: center;
+            align-items: center; /* Center the images vertically */
+            flex-wrap: wrap;
+        }
+        .output img {
+            width: 44%; /* Adjust the width to ensure all images fit in a row */
+            height: auto; /* Maintain the aspect ratio */
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Water Segmentation DeepLabv3 Model</h3>
+    <form id="upload-form" action="/predict" method="POST" enctype="multipart/form-data">
+        <!-- Hidden file input -->
+        <input type="file" id="file-upload" name="file" accept=".tif" required>
+
+        <!-- Custom buttons -->
+        <button type="button" class="button" onclick="document.getElementById('file-upload').click()">Choose File📁</button>
+        <span id="file-chosen">No file chosen</span>
+
+        <button type="button" class="button" onclick="submitForm()">Predict 👆</button>
+        
+   </form>
+
+        {% if output %}
+        <div class="output">
+            <div>
+                <h4>Results</h4>
+                <img id="input-image" src="data:image/png;base64,{{ output }}" alt="Input Image">
+            </div>
+        </div>
+        {% endif %}
+    
+    <script>
+        // Update the file chosen text
+        const fileInput = document.getElementById('file-upload');
+        const fileChosen = document.getElementById('file-chosen');
+
+        fileInput.addEventListener('change', function(){
+            fileChosen.textContent = this.files[0].name;
+        });
+
+        // Form submit function
+        function submitForm() {
+            const form = document.getElementById('upload-form');
+            if (fileInput.files.length === 0) {
+                alert("Please choose a file before submitting.");
+            } else {
+                form.submit();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

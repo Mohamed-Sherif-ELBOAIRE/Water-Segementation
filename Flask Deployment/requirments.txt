@@ -1,0 +1,11 @@
+pip
+tensorflow==2.12
+flask
+numpy
+pandas
+matplotlib
+seaborn
+PIL
+scikit-learn
+keras
+tifffile
